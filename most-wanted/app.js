@@ -130,6 +130,8 @@ function displayPeople(people) {
             .join("\n")
     );
 }
+
+
 // End of displayPeople()
 
 /**
@@ -148,6 +150,7 @@ function displayPerson(person) {
     personInfo += `Occupation: ${person.occupation}\n`;
     personInfo += `Parents: ${person.parents}\n`;
     personInfo += `CurrentSpouse: ${person.currentSpouse}\n`;
+    return personInfo
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
 }
@@ -192,6 +195,14 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function findPersonFamily(people){
+    let personParents = `Parents: ${people.parents}\n`;
+    let personSpouse = `Spouse: ${people.currentSpouse}\n`;
+    
+    return personParents + personSpouse
+    
+}
 
 function searchByTraits(people) {
     let occupation = promptFor("What occupation do they have?", chars);
