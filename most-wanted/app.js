@@ -196,22 +196,59 @@ function chars(input) {
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
+
+function displayTraitPeople(people){
+    alert(
+        people
+            .map(function (person) {
+                return `${person.firstName} ${person.lastName}`;
+            })
+            .join("\n")
+    );
+}
+
+
 function findPersonFamily(people){
-    let personParents = `Parents: ${people.parents}\n`;
-    let personSpouse = `Spouse: ${people.currentSpouse}\n`;
+    let Parents = `Parents: ${people.parents}\n`;
+    let Spouse = `Spouse: ${people.currentSpouse}\n`;
+    let Siblings = `Siblings: ${people.parents.id}\n`;
+    return Parents + Spouse + Siblings
     
-    return personParents + personSpouse
-    
+}
+
+
+function searchByGender(people) {
+    let gender = promptFor("What is the gender of the person you are looking for?", chars).toLowerCase();
+    let response = people.filter(function(el){
+        if (el.gender == gender) {
+            return true;
+        }else{
+            return false;
+        }
+
+    })
+    return response
+
 }
 
 function searchByTraits(people) {
-    let occupation = promptFor("What occupation do they have?", chars);
-
-    
-    let foundPerson = people.filter(function (person) {
-        if (person.occupation === occupation) {
-            return true;
+    let searchResults;
+    let userInput = prompt(
+        "You can search for someone by Gender, DOB, Weight, Height, Eye Color, or their Occupation? Or press 1 to search multiple traits"
+    );
+    userInput = userInput.toLowerCase();
+    switch(userInput) {
+        case "gender":
+            searchResults = searchByGender(people);
+            if(searchResults.length === 0){
+                alert('No individuals match this search')
+                app(people)
+            }else
+                displayTraitPeople(searchResults)
+            break;
         }
-    });
-    return foundPerson;
-}
+            return searchResults;
+    }
+    
+
+
