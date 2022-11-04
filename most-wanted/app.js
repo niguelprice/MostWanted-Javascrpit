@@ -217,7 +217,7 @@ function findPersonFamily(people){
 }
 
 
-function searchByGender(people) {
+function searchByGender(people){
     let gender = promptFor('What is the gender of the person you are looking for?', chars).toLowerCase();
     let response = people.filter(function(el){
         if (el.gender == gender) {
@@ -230,6 +230,36 @@ function searchByGender(people) {
     return response
 
 }
+
+function searchbydob(people){
+    let dob = promptFor('what is the dob of the person you are looking for?')
+    let response = people.filter(function(el){
+        if (el.dob == dob){
+            return true;
+        }else{
+            return false;
+        }
+    })
+    return response
+
+
+}
+
+function searchByHeight(people){
+    let height = promptFor('what is the height of the person you are looking for?')
+    let response = people.filter(function(el){
+        if(el.height == height){
+            return true;
+        }else{
+            return false;
+        }
+    })
+    return response
+}
+
+
+
+
 
 function searchByTraits(people) {
     let searchResults;
