@@ -231,7 +231,7 @@ function searchByGender(people){
 
 }
 
-function searchbydob(people){
+function searchBydob(people){
     let dob = promptFor('what is the dob of the person you are looking for?')
     let response = people.filter(function(el){
         if (el.dob == dob){
@@ -257,7 +257,41 @@ function searchByHeight(people){
     return response
 }
 
+function searchByWeight(people){
+    let weight = promptFor('what is the weight of the person you are looking for?')
+    let response = people.filter(function(el){
+        if(el.weight == weight){
+            return true;
+        }else{
+            return false;
+        }
+    })
+    return response
+}
 
+function searchByEyeColor(people){
+    let eyeColor = promptFor('what is the eye color of the person you are looking for?')
+    let response = people.filter(function(el){
+        if(el.eyeColor == eyeColor){
+            return true;
+        }else{
+            return false;
+        }
+    })
+    return response
+}
+
+function searchByOccupation(people){
+    let occupation = promptFor('what occupation does the person have that you are looking for?')
+    let response = people.filter(function(el){
+        if(el.occupation == occupation){
+            return true;
+        }else{
+            return false;
+        }
+    })
+    return response
+}
 
 
 
@@ -278,7 +312,7 @@ function searchByTraits(people) {
             break;
         
         case 'dob':
-            searchResults = searchbydob(people);
+            searchResults = searchBydob(people);
             if(searchResults.length === 0){
                 alert('No individuals match with this search')
                 app(people)
@@ -313,7 +347,7 @@ function searchByTraits(people) {
                 displayTraitPeople(searchResults)
             break;
 
-        case 'occcupation':
+        case 'occupation':
             searchResults = searchByOccupation(people);
             if(searchResults.length === 0){
                 alert('No individuals match with this search')
