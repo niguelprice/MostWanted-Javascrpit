@@ -232,7 +232,7 @@ function searchByGender(people){
 }
 
 function searchBydob(people){
-    let dob = promptFor('what is the dob of the person you are looking for?')
+    let dob = promptFor('what is the dob of the person you are looking for?', chars)
     let response = people.filter(function(el){
         if (el.dob == dob){
             return true;
@@ -246,7 +246,7 @@ function searchBydob(people){
 }
 
 function searchByHeight(people){
-    let height = promptFor('what is the height of the person you are looking for?')
+    let height = promptFor('what is the height of the person you are looking for?', chars)
     let response = people.filter(function(el){
         if(el.height == height){
             return true;
@@ -258,7 +258,7 @@ function searchByHeight(people){
 }
 
 function searchByWeight(people){
-    let weight = promptFor('what is the weight of the person you are looking for?')
+    let weight = promptFor('what is the weight of the person you are looking for?', chars)
     let response = people.filter(function(el){
         if(el.weight == weight){
             return true;
@@ -270,7 +270,7 @@ function searchByWeight(people){
 }
 
 function searchByEyeColor(people){
-    let eyeColor = promptFor('what is the eye color of the person you are looking for?')
+    let eyeColor = promptFor('what is the eye color of the person you are looking for?', chars)
     let response = people.filter(function(el){
         if(el.eyeColor == eyeColor){
             return true;
@@ -282,7 +282,7 @@ function searchByEyeColor(people){
 }
 
 function searchByOccupation(people){
-    let occupation = promptFor('what occupation does the person have that you are looking for?')
+    let occupation = promptFor('what occupation does the person have that you are looking for?', chars)
     let response = people.filter(function(el){
         if(el.occupation == occupation){
             return true;
