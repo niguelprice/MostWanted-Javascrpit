@@ -72,7 +72,7 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people);
+            let personFamily = findParents(person[0], people);
             alert(personFamily);
             break;
         case "descendants":
@@ -211,11 +211,21 @@ function displayTraitPeople(people){
 function findPersonFamily(people){
     let Parents = `Parents: ${people.parents}\n`;
     let Spouse = `Spouse: ${people.currentSpouse}\n`;
-    let Siblings = `Siblings: ${people.parents.id}\n`;
+    let Siblings = `Siblings: ${people.Siblings}\n`;
     return Parents + Spouse + Siblings
     
 }
 
+
+function findParents(person,people){
+    let foundParents = people.filter(function(el) {
+    if(person.parents.includes(el.id)){
+        return true;
+    }
+    })
+     displayPeople(foundParents)
+    return foundParents
+}
 
 function searchByGender(people){
     let gender = promptFor('What is the gender of the person you are looking for?', chars).toLowerCase();
@@ -270,7 +280,7 @@ function searchByWeight(people){
 }
 
 function searchByEyeColor(people){
-    let eyeColor = promptFor('what is the eye color of the person you are looking for?', chars)
+    let eyeColor = promptFor('what is the eye color of the person you are looking for?', chars).toLowerCase();
     let response = people.filter(function(el){
         if(el.eyeColor == eyeColor){
             return true;
@@ -293,12 +303,25 @@ function searchByOccupation(people){
     return response
 }
 
+function searchByMultipleTraits(people){
+    promptFor('You can search for people with up to five traits, which traits would you like to search for, your options are gender, dob, height, weight, eye color, and occupation?', chars)
+
+
+
+}
+
+
+
+
+
+
+
 
 
 function searchByTraits(people) {
     let searchResults;
     let userInput = prompt(
-        'You can search for someone by Gender, DOB, Weight, Height, Eye Color, or their Occupation? Or press 1 to search multiple traits'
+        'You can search for someone by Gender, DOB, Weight, Height, Eye Color, or their Occupation? Or you can press 1 to search for multiple traits.'
     );
     userInput = userInput.toLowerCase();
     switch(userInput) {
@@ -338,7 +361,7 @@ function searchByTraits(people) {
                 displayTraitPeople(searchResults)
             break;
 
-        case 'eyeColor':
+        case 'eyecolor':
             searchResults = searchByEyeColor(people);
             if(searchResults.length === 0){
                 alert('No individuals match with this search')
@@ -355,10 +378,16 @@ function searchByTraits(people) {
             }else
                 displayTraitPeople(searchResults)
             break;
+        
+        case '1':
+            searchResults = searchByMultipleTraits(people)
+            if(searchResults.length === 0){
+                alert('No individuals match with this search')
+                app(people)
+            }else
+                displayTraitPeople(searchResults)
+            break;
+
         }
-
             return searchResults;
-    }
-
-
-
+         }
