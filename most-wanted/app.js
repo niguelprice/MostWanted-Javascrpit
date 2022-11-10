@@ -72,7 +72,7 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findParents(person[0], people);
+            let personFamily = findSiblings(person[0], people); 
             alert(personFamily);
             break;
         case "descendants":
@@ -223,9 +223,39 @@ function findParents(person,people){
         return true;
     }
     })
-     displayPeople(foundParents)
-    return foundParents
+    displayPeople(foundParents)
+    return foundParents 
 }
+
+function findSpouse(person,people){
+   let foundSpouse = people.filter(function(el){
+    if(person.currentSpouse == el.id){
+        return true;
+    }
+    })
+    displayPeople(foundSpouse)
+    return foundSpouse
+}
+
+
+
+function findSiblings(person,people){
+    let foundSiblings = people.filter(function(el){
+            if(el.parents.join('') === person.parents.join('') && person.id != el.id){
+                return true
+            }
+        })  
+        displayPeople(foundSiblings)
+        return foundSiblings
+    }
+        
+
+
+
+
+
+
+
 
 function searchByGender(people){
     let gender = promptFor('What is the gender of the person you are looking for?', chars).toLowerCase();
