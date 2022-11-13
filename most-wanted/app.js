@@ -72,7 +72,9 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findSiblings(person[0], people); 
+            let personFamily = findParents(person[0], people);
+            findSpouse(person[0], people);
+            findSiblings(person[0], people);
             alert(personFamily);
             break;
         case "descendants":
@@ -224,7 +226,7 @@ function findParents(person,people){
     }
     })
     displayPeople(foundParents)
-    return foundParents 
+    return foundParents
 }
 
 function findSpouse(person,people){
@@ -334,11 +336,11 @@ function searchByOccupation(people){
 }
 
 function searchByMultipleTraits(people){
-    promptFor('You can search for people with up to five traits, which traits would you like to search for, your options are gender, dob, height, weight, eye color, and occupation?', chars)
-
-
+    let traits = promptFor('You can search for people with up to five traits, which traits would you like to search for, your options are gender, dob, height, weight, eye color, and occupation?', chars);
 
 }
+
+
 
 
 
@@ -421,3 +423,19 @@ function searchByTraits(people) {
         }
             return searchResults;
          }
+
+
+function findPersonDescendants(person,people){
+    let descendants = people.filter(function(el){
+    if(el.parents.includes(person.id)){
+        return true
+    }
+})
+displayPeople(descendants)
+return descendants
+}
+
+
+
+
+
