@@ -337,7 +337,14 @@ function searchByOccupation(people){
 
 function searchByMultipleTraits(people){
     let traits = promptFor('You can search for people with up to five traits, which traits would you like to search for, your options are gender, dob, height, weight, eye color, and occupation?', chars);
-
+    let response = people.filter(function(el){
+        if(el.eyeColor || el.gender || el.height || el.occupation || el.weight === traits){
+            return true;
+        }else{
+            return false
+        }
+    })
+    return response
 }
 
 
